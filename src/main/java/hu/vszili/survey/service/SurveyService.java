@@ -45,7 +45,6 @@ public class SurveyService {
      * @return a list of {@link Member} objects representing the members who have completed the specified survey
      * @throws SurveyNotFoundException if no survey exists with the given survey ID
      */
-    // TODO: unit test
     public List<Member> getMembersCompleted(Long surveyId) {
         if (!surveyRepository.existsById(surveyId)) {
             throw new SurveyNotFoundException(surveyId);
@@ -68,7 +67,6 @@ public class SurveyService {
      * @param surveyId the unique identifier of the survey for which eligible members need to be retrieved
      * @return a list of {@code Member} objects representing the active and eligible members for the specified survey
      */
-    // TODO: unit test
     public List<Member> getEligibleMembers(Long surveyId) {
         Long notAskedStatusId = statusRepository.findIdByName(NOT_ASKED_STATUS);
         Map<Long, Member> members = memberRepository.getMembers();
@@ -94,7 +92,6 @@ public class SurveyService {
      * @return a list of {@code SurveyStatistic} objects, where each object contains
      *         statistical data related to a specific survey
      */
-    // TODO: unit test
     public List<SurveyStatistic> getStatistics() {
         Long completedStatusId = statusRepository.findIdByName(COMPLETED_STATUS);
         Long filteredStatusId = statusRepository.findIdByName(FILTERED_STATUS);

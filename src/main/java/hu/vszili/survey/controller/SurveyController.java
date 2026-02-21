@@ -50,7 +50,6 @@ public class SurveyController {
      *
      * @return a list of {@code SurveyStatistic} objects where each object contains statistical data for a survey
      */
-    // TODO: unit test
     @GetMapping("/statistics")
     public List<SurveyStatistic> getSurveyStatistics() {
         return surveyService.getStatistics();

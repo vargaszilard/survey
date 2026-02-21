@@ -49,7 +49,7 @@ public class MemberService {
 
     /**
      * Calculates the total points earned by a member across completed or filtered surveys.
-     *
+     * <p>
      * The method retrieves and filters participations for the specified member ID
      * that have a status of either "Completed" or "Filtered". It calculates the points
      * based on the survey's status and sums them up.
@@ -58,7 +58,6 @@ public class MemberService {
      * @return the total points earned by the member based on completed or filtered surveys
      * @throws MemberNotFoundException if no member exists with the given member ID
      */
-    // TODO: unit test
     public Integer getPoints(Long memberId) {
         if (!memberRepository.existsById(memberId)) {
             throw new MemberNotFoundException(memberId);
