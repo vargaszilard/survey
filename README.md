@@ -33,6 +33,7 @@ Ensuring the code is easily unit-testable.
 
 ## Ideas for further developement
 
+- DTO pattern
 - caching
 - logging
 - observing logs/traces/metrics

@@ -57,6 +57,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public Map<Long, Member> getMembers() {
+        // deep copy or shallow copy. DTO pattern, mapping
         return new HashMap<>(this.members);
     }
 
