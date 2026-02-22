@@ -8,6 +8,7 @@ import hu.vszili.survey.repositroy.MemberRepository;
 import hu.vszili.survey.repositroy.ParticipationRepository;
 import hu.vszili.survey.repositroy.StatusRepository;
 import hu.vszili.survey.repositroy.SurveyRepository;
+import hu.vszili.survey.service.impl.SurveyServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,8 +26,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class SurveyServiceTest {
-    
+class SurveyServiceImplTest {
+
+    public static final String COMPLETED_STATUS = "Completed";
+
     @Mock
     private SurveyRepository surveyRepository;
     
@@ -40,7 +43,7 @@ class SurveyServiceTest {
     private MemberRepository memberRepository;
 
     @InjectMocks
-    private SurveyService surveyService;
+    private SurveyServiceImpl surveyService;
 
     /**
      * Retrieves a list of completed surveys for a specific member.
@@ -52,7 +55,7 @@ class SurveyServiceTest {
         Long completedStatusId = 1L;
 
         when(surveyRepository.existsById(surveyId)).thenReturn(true);
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
 
         Participation participation1 = new Participation();
         participation1.setMemberId(1L);
@@ -109,7 +112,7 @@ class SurveyServiceTest {
         Long completedStatusId = 1L;
 
         when(surveyRepository.existsById(surveyId)).thenReturn(true);
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
         when(participationRepository.findAll()).thenReturn(Collections.emptyList());
 
         // when
@@ -130,7 +133,7 @@ class SurveyServiceTest {
         Long rejectedStatusId = 3L;
 
         when(surveyRepository.existsById(surveyId)).thenReturn(true);
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
 
         Participation completed = new Participation();
         completed.setMemberId(1L);
@@ -168,7 +171,7 @@ class SurveyServiceTest {
         Long completedStatusId = 1L;
 
         when(surveyRepository.existsById(surveyId)).thenReturn(true);
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
 
         Participation participation = new Participation();
         participation.setMemberId(999L);
@@ -308,7 +311,7 @@ class SurveyServiceTest {
         Long filteredStatusId = 2L;
         Long rejectedStatusId = 3L;
 
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
         when(statusRepository.findIdByName("Filtered")).thenReturn(filteredStatusId);
         when(statusRepository.findIdByName("Rejected")).thenReturn(rejectedStatusId);
 
@@ -357,7 +360,7 @@ class SurveyServiceTest {
         Long filteredStatusId = 2L;
         Long rejectedStatusId = 3L;
 
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
         when(statusRepository.findIdByName("Filtered")).thenReturn(filteredStatusId);
         when(statusRepository.findIdByName("Rejected")).thenReturn(rejectedStatusId);
 
@@ -394,7 +397,7 @@ class SurveyServiceTest {
         Long filteredStatusId = 2L;
         Long rejectedStatusId = 3L;
 
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
         when(statusRepository.findIdByName("Filtered")).thenReturn(filteredStatusId);
         when(statusRepository.findIdByName("Rejected")).thenReturn(rejectedStatusId);
         when(participationRepository.findAll()).thenReturn(Collections.emptyList());
@@ -416,7 +419,7 @@ class SurveyServiceTest {
         Long filteredStatusId = 2L;
         Long rejectedStatusId = 3L;
 
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
         when(statusRepository.findIdByName("Filtered")).thenReturn(filteredStatusId);
         when(statusRepository.findIdByName("Rejected")).thenReturn(rejectedStatusId);
 
@@ -454,7 +457,7 @@ class SurveyServiceTest {
         Long filteredStatusId = 2L;
         Long rejectedStatusId = 3L;
 
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
         when(statusRepository.findIdByName("Filtered")).thenReturn(filteredStatusId);
         when(statusRepository.findIdByName("Rejected")).thenReturn(rejectedStatusId);
 

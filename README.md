@@ -38,4 +38,5 @@ Ensuring the code is easily unit-testable.
 - logging
 - observing logs/traces/metrics
 - storing data in database
+- repository layer unit tests
 - integration tests

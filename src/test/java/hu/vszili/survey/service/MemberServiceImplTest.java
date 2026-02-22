@@ -7,6 +7,7 @@ import hu.vszili.survey.repositroy.MemberRepository;
 import hu.vszili.survey.repositroy.ParticipationRepository;
 import hu.vszili.survey.repositroy.StatusRepository;
 import hu.vszili.survey.repositroy.SurveyRepository;
+import hu.vszili.survey.service.impl.MemberServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +23,9 @@ import java.util.Optional;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class MemberServiceTest {
+class MemberServiceImplTest {
+
+    public static final String COMPLETED_STATUS = "Completed";
 
     @Mock
     private MemberRepository memberRepository;
@@ -37,7 +40,7 @@ class MemberServiceTest {
     private StatusRepository statusRepository;
 
     @InjectMocks
-    private MemberService memberService;
+    private MemberServiceImpl memberService;
 
     @Test
     void testGetCompletedSurveys_MemberExists_SurveysReturned() {
@@ -46,7 +49,7 @@ class MemberServiceTest {
         Long completedStatusId = 1L;
 
         when(memberRepository.existsById(memberId)).thenReturn(true);
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
 
         Participation participation1 = new Participation();
         participation1.setMemberId(memberId);
@@ -82,7 +85,7 @@ class MemberServiceTest {
         Long completedStatusId = 1L;
 
         when(memberRepository.existsById(memberId)).thenReturn(true);
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
         when(participationRepository.findAll()).thenReturn(Collections.emptyList());
 
         // when
@@ -109,7 +112,7 @@ class MemberServiceTest {
         Long completedStatusId = 1L;
 
         when(memberRepository.existsById(memberId)).thenReturn(true);
-        when(statusRepository.findIdByName("Completed")).thenReturn(completedStatusId);
+        when(statusRepository.findIdByName(COMPLETED_STATUS)).thenReturn(completedStatusId);
 
         Participation participation1 = new Participation();
         participation1.setMemberId(memberId);
